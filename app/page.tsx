@@ -3,37 +3,43 @@ import Button from './components/Button';
 import Link from 'next/link';
 import Nav from './components/Nav';
 import Keyboard from './components/Keyboard';
+import { motion } from 'framer-motion';
 
 const switches = [
   {
     id: 1,
-    name: 'Flurples Cardboard',
+    name: 'Cardboard',
     color: '#AD8762',
     sound: '/cardboard.mp3',
+    brand: 'Flurples',
   },
   {
     id: 2,
-    name: 'NovelKeys Creams',
+    name: 'Cream',
     color: '#FFFFFD',
     sound: '/creams.mp3',
+    brand: 'NovelKeys',
   },
   {
     id: 3,
     name: 'Crystal Purple',
     color: '#A7A2E5',
     sound: '/crystalpurple.mp3',
+    brand: 'Everglide',
   },
   {
     id: 4,
     name: 'Japanese Black',
     color: '#000',
     sound: '/japaneseblack.mp3',
+    brand: 'Cerry MX',
   },
   {
     id: 5,
     name: 'Milky Yellow',
     color: '#FFFFC5',
     sound: '/milkyyellow.mp3',
+    brand: 'Gateron',
   },
 ];
 
@@ -47,18 +53,59 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#d0d0d0] p-12 sm:p-24">
       <Nav />
-      <Keyboard>
-        {switches.map((switchItem) => (
-          <Button
-            key={switchItem.id}
-            id={switchItem.id}
-            name={switchItem.name}
-            color={switchItem.color}
-            keyToPress={`#${switchItem.id}`}
-            onClick={() => playSound(switchItem.sound)}
-          />
-        ))}
-      </Keyboard>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <Keyboard>
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.1,
+                  when: 'beforeChildren',
+                },
+              },
+            }}
+            className="flex space-x-4"
+          >
+            {switches.map((switchItem) => (
+              <motion.div
+                key={switchItem.id}
+                variants={{
+                  hidden: { x: 20, opacity: 0 },
+                  show: { x: 0, opacity: 1 },
+                }}
+              >
+                <Button
+                  id={switchItem.id}
+                  name={switchItem.name}
+                  color={switchItem.color}
+                  keyToPress={`#${switchItem.id}`}
+                  brand={switchItem.brand}
+                  onClick={() => playSound(switchItem.sound)}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* {switches.map((switchItem) => (
+            <Button
+              key={switchItem.id}
+              id={switchItem.id}
+              name={switchItem.name}
+              color={switchItem.color}
+              keyToPress={`#${switchItem.id}`}
+              onClick={() => playSound(switchItem.sound)}
+            />
+          ))} */}
+        </Keyboard>
+      </motion.div>
       <Link
         target="_blank"
         rel="non-refferer"
