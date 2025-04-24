@@ -13,7 +13,7 @@ const switches = [
   },
   {
     id: 2,
-    name: 'NK Creams',
+    name: 'NovelKeys Creams',
     color: '#FFFFFD',
     sound: '/creams.mp3',
   },
@@ -63,7 +63,7 @@ export default function Home() {
         target="_blank"
         rel="non-refferer"
         href={'http://molvaer.no'}
-        className="absolute bottom-2 right-2 font-mono uppercase font-sm font-bold"
+        className="absolute bottom-2 right-2 font-mono uppercase font-xs font-semibold"
       >
         Made by Mart
       </Link>
