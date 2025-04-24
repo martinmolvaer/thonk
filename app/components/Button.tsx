@@ -5,11 +5,11 @@ interface ButtonProps {
   color?: string;
   brand?: string;
   id: number;
-  keyToPress: string;
+  keyToPress?: string;
   onClick: () => void;
 }
 
-function Button({ name, onClick, color, keyToPress, id, brand }: ButtonProps) {
+function Button({ name, onClick, color, id, brand }: ButtonProps) {
   return (
     <div
       id={String(id)}
