@@ -23,7 +23,7 @@ const switches = [
   {
     id: 3,
     name: 'Crystal Purple',
-    color: '#A7A2E5',
+    color: '#EB8BF9',
     sound: '/crystalpurple.mp3',
     brand: 'Everglide',
   },
@@ -41,12 +41,33 @@ const switches = [
     sound: '/milkyyellow.mp3',
     brand: 'Gateron',
   },
+  {
+    id: 6,
+    name: 'Oreo',
+    color: '#8B4513',
+    sound: '/oreo.mp3',
+    brand: 'Everglide',
+  },
+  {
+    id: 7,
+    name: 'Holy Pandas',
+    color: '#8B4513',
+    sound: '/holypandas.mp3',
+    brand: 'Invyr',
+  },
+  {
+    id: 8,
+    name: 'Baby Kangaroo 2.0',
+    color: '#B3D6BB',
+    sound: '/babykangaroo2.mp3',
+    brand: 'Gateron',
+  },
 ];
 
 export default function Home() {
   const playSound = (sound: string) => {
     const audio = new Audio(sound);
-    audio.volume = 0.5;
+    audio.volume = 0.25;
     audio.play();
   };
 
@@ -72,7 +93,7 @@ export default function Home() {
                 },
               },
             }}
-            className="flex space-x-4"
+            className="grid grid-cols-4 gap-4"
           >
             {switches.map((switchItem) => (
               <motion.div
