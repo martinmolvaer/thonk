@@ -1,8 +1,8 @@
 'use client';
-import useSound from 'use-sound';
 import Button from './components/Button';
-import { useEffect } from 'react';
 import Link from 'next/link';
+import Nav from './components/Nav';
+import Keyboard from './components/Keyboard';
 
 const switches = [
   {
@@ -45,9 +45,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#d0d0d0] p-12 sm:p-24">
-      <p className="absolute top-4 left-4 font-mono">clackers</p>
-      <div className="flex gap-1 flex-wrap items-center justify-center p-4 bg-[#999999] rounded-3xl shadow-xl border-10 border-[#F4F7FE]">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-[#d0d0d0] p-12 sm:p-24">
+      <Nav />
+      <Keyboard>
         {switches.map((switchItem) => (
           <Button
             key={switchItem.id}
@@ -58,7 +58,7 @@ export default function Home() {
             onClick={() => playSound(switchItem.sound)}
           />
         ))}
-      </div>
+      </Keyboard>
       <Link
         target="_blank"
         rel="non-refferer"
@@ -67,6 +67,6 @@ export default function Home() {
       >
         Made by Mart
       </Link>
-    </div>
+    </main>
   );
 }
