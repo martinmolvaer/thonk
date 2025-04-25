@@ -7,6 +7,7 @@ interface ButtonProps {
   id: number;
   keyToPress?: string;
   onClick: () => void;
+  info?: string;
 }
 
 function Button({ name, onClick, color, id, brand }: ButtonProps) {
