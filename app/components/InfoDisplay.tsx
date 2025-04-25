@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Switch as SwitchType } from '../page';
+import { Switch as SwitchType } from '../types/switchtype';
 
 function InfoDisplay({ currentSwitch }: { currentSwitch: SwitchType | null }) {
   return (
