@@ -1,32 +1,56 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Switch as SwitchType } from '../page';
 
-function InfoDisplay({
-  infoDisplay,
-  link,
-}: {
-  infoDisplay: string;
-  link: string;
-}) {
+function InfoDisplay({ currentSwitch }: { currentSwitch: SwitchType | null }) {
   return (
     <div className="min-h-[200px]">
       <div className="flex flex-col items-center justify-center mt-8">
-        {infoDisplay && (
+        {currentSwitch?.info && (
+          <motion.div
+            key={`info-${currentSwitch?.id}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+            className="text-center text-sm font-mono semibold"
+          >
+            <div className="flex justify-center items-center">
+              <div className="flex gap-1 items-center mb-1">
+                <p className="font-mono text-md">
+                  {currentSwitch.brand ? currentSwitch.brand : ''}
+                </p>
+                <div
+                  style={{ backgroundColor: currentSwitch.color }}
+                  className={`size-3 border rounded-full border-neutral-300`}
+                ></div>
+                <p className="font-mono text-md font-semibold">
+                  {currentSwitch.name ? currentSwitch.name : ''}
+                </p>
+              </div>
+            </div>
+            <div className="max-w-[55ch] text-neutral-500">
+              {currentSwitch.info}
+            </div>
+          </motion.div>
+        )}
+        {currentSwitch === null && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, delay: 1 }}
-            className="text-center text-sm font-mono font-semibold"
+            className="font-mono text-sm font-semubld text-neutral-500"
           >
-            <div className="max-w-[75ch] text-neutral-500">{infoDisplay}</div>
+            Select a switch to view details
           </motion.div>
         )}
       </div>
-      <div className="flex  flex-col items-center justify-center mt-8">
-        {link && (
+      <div className="flex flex-col items-center justify-center mt-8">
+        {currentSwitch?.link && (
           <motion.div
+            key={`link-${currentSwitch?.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -37,10 +61,10 @@ function InfoDisplay({
               <Link
                 target="_blank"
                 rel="non-refferer"
-                href={link}
-                className="text-purple-500 underline"
+                href={currentSwitch.link}
+                className="text-orange-500 font-bold underline"
               >
-                {link ? 'More info' : ''}
+                {currentSwitch?.link ? 'More info' : ''}
               </Link>
             </div>
           </motion.div>

@@ -7,7 +7,17 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import InfoDisplay from './components/InfoDisplay';
 
-const switches = [
+export type Switch = {
+  id: number;
+  name: string;
+  color: string;
+  sound: string;
+  brand: string;
+  info: string;
+  link: string;
+};
+
+export const switches: Switch[] = [
   {
     id: 1,
     name: 'Cardboard',
@@ -83,16 +93,22 @@ const switches = [
 ];
 
 export default function Home() {
+  const [currentSwitch, setCurrentSwitch] = useState<Switch | null>(null);
+  const [name, setName] = useState('');
+  const [brand, setBrand] = useState('');
   const [infoDisplay, setInfoDisplay] = useState(
     'Click a switch to hear the sound!'
   );
   const [link, setLink] = useState('');
-  const playSound = (sound: string, info: string, link: string) => {
-    const audio = new Audio(sound);
+  const playSound = (switchItem: Switch) => {
+    const audio = new Audio(switchItem.sound);
     audio.volume = 0.25;
     audio.play();
-    setInfoDisplay(info);
-    setLink(link);
+    setCurrentSwitch(switchItem);
+    // setInfoDisplay(switchItem.info);
+    // setLink(switchItem.link);
+    // setName(switchItem.name);
+    // setBrand(switchItem.brand);
   };
 
   return (
@@ -119,19 +135,13 @@ export default function Home() {
                 color={switchItem.color}
                 keyToPress={`#${switchItem.id}`}
                 brand={switchItem.brand}
-                onClick={() =>
-                  playSound(
-                    switchItem.sound,
-                    switchItem.info ?? '',
-                    switchItem.link ?? ''
-                  )
-                }
+                onClick={() => playSound(switchItem)}
               />
             </motion.div>
           ))}
         </Keyboard>
       </motion.div>
-      <InfoDisplay infoDisplay={infoDisplay} link={link} />
+      <InfoDisplay currentSwitch={currentSwitch} />
       <Link
         target="_blank"
         rel="non-refferer"
