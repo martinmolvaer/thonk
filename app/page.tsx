@@ -24,7 +24,7 @@ const switches = [
     sound: '/creams.mp3',
     brand: 'NovelKeys',
     info: 'NovelKeys Cream switches are smooth linear switches with a full POM housing and self-lubricating stem. They offer a buttery feel and deep sound, even stock, with a 55g actuation and 70g bottom-out force.',
-    link: 'https://novelkeys.xyz/products/novelkeys-cream-switches',
+    link: 'https://novelkeys.com/products/nk-cream-series?variant=40598616866983',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const switches = [
     sound: '/crystalpurple.mp3',
     brand: 'Everglide',
     info: 'Everglide Crystal Violet switches are tactile with a smooth 45g start and 55g bump, offering a soft, cushioned feel and a gentle, quiet sound.',
-    link: 'https://www.everglide.com/products/everglide-crystal-purple-switches',
+    link: 'https://everglide.co/products/everglide-crystal-violet-switches?variant=42890633248980',
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const switches = [
     sound: '/milkyyellow.mp3',
     brand: 'Gateron',
     info: 'The Gateron Milky Pro (KS-3 Pro) switches are popular linear switches known for their smooth feel, reduced stem wobble, and improved sound, thanks to retooled molds and a milky housing.',
-    link: 'https://www.gateron.com/products/gateron-milky-yellow-linear-switch-set?VariantsId=10684',
+    link: 'https://www.gateron.co/products/gateron-ks-3-milky-pro-switch-set',
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ const switches = [
     sound: '/oreo.mp3',
     brand: 'Everglide',
     info: 'With a crisp and responsive tactile bump at the top and a cushy feeling when bottoming out, the Everglide Oreo mechanical switches are a joy to type on.',
-    link: 'https://www.everglide.com/products/everglide-oreo-switches',
+    link: 'https://drop.com/buy/everglide-oreo-mechanical-switches/details#signupv2',
   },
   {
     id: 7,
@@ -68,8 +68,8 @@ const switches = [
     color: '#8B4513',
     sound: '/holypandas.mp3',
     brand: 'Invyr',
-    info: 'Holy Panda switches are known for their distinct sound and satisfying tactile feel — a sharp, snappy bump with a deep, “thocky” sound. The combination of Halo stems and Invyr Panda housings creates a responsive, premium typing experience that’s both punchy and smooth.',
-    link: 'https://www.invyr.com/products/holy-panda-switches',
+    info: 'Holy Panda switches are known for their distinct sound and satisfying tactile feel — a sharp, snappy bump with a deep, “thocky” sound. ',
+    link: 'https://drop.com/buy/drop-invyr-holy-panda-mechanical-switches',
   },
   {
     id: 8,
@@ -130,7 +130,6 @@ export default function Home() {
             </motion.div>
           ))}
         </Keyboard>
-        {/* More info  */}
       </motion.div>
       <InfoDisplay infoDisplay={infoDisplay} link={link} />
       <Link

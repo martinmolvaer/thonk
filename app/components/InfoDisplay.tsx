@@ -17,7 +17,7 @@ function InfoDisplay({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, delay: 1 }}
+            transition={{ duration: 0.35, delay: 1 }}
             className="text-center text-sm font-mono font-semibold"
           >
             <div className="max-w-[75ch] text-neutral-500">{infoDisplay}</div>
@@ -30,7 +30,7 @@ function InfoDisplay({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, delay: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             className="text-center text-sm font-mono font-semibold"
           >
             <div className="max-w-[50ch] text-neutral-500">
