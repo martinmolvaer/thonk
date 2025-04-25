@@ -94,21 +94,11 @@ export const switches: Switch[] = [
 
 export default function Home() {
   const [currentSwitch, setCurrentSwitch] = useState<Switch | null>(null);
-  const [name, setName] = useState('');
-  const [brand, setBrand] = useState('');
-  const [infoDisplay, setInfoDisplay] = useState(
-    'Click a switch to hear the sound!'
-  );
-  const [link, setLink] = useState('');
   const playSound = (switchItem: Switch) => {
     const audio = new Audio(switchItem.sound);
     audio.volume = 0.25;
     audio.play();
     setCurrentSwitch(switchItem);
-    // setInfoDisplay(switchItem.info);
-    // setLink(switchItem.link);
-    // setName(switchItem.name);
-    // setBrand(switchItem.brand);
   };
 
   return (
