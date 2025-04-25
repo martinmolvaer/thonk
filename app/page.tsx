@@ -4,16 +4,31 @@ import Link from 'next/link';
 import Nav from './components/Nav';
 import Keyboard from './components/Keyboard';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import InfoDisplay from './components/InfoDisplay';
 import { Switch } from './types/switchtype';
 import { switches } from './switches';
 
 export default function Home() {
   const [currentSwitch, setCurrentSwitch] = useState<Switch | null>(null);
+
+  // preload audio files
+  const audioMap = useMemo(() => {
+    if (typeof window === 'undefined') return {};
+
+    const map: Record<string, HTMLAudioElement> = {};
+    switches.forEach((sw) => {
+      const audio = new Audio(sw.sound);
+      audio.volume = 0.25;
+      map[sw.id] = audio;
+    });
+    return map;
+  }, []);
+
   const playSound = (switchItem: Switch) => {
-    const audio = new Audio(switchItem.sound);
-    audio.volume = 0.25;
+    const audio = audioMap[switchItem.id];
+    if (!audio) return;
+    audio.currentTime = 0;
     audio.play();
     setCurrentSwitch(switchItem);
   };
