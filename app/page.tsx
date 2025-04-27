@@ -96,16 +96,16 @@ export default function Home() {
         target="_blank"
         rel="non-refferer"
         href={'http://molvaer.no'}
-        className="absolute bottom-2 right-2 font-mono text-xs"
+        className="absolute bottom-2 right-2 font-mono text-xs text-black/50 hover:text-orange-500 hover:font-bold transition-all duration-200"
       >
         made by mart
       </Link>
-      <div className="absolute top-2 right-2 flex gap-2">
+      <div className="absolute top-2 right-2 flex transition-all ">
         {keyboardThemes.map((theme) => (
           <button
             key={theme.name}
             onClick={() => handleKeyboardThemeChange(theme.name)}
-            className={`w-4 h-4 rounded-full border border-neutral-500 ${
+            className={`w-4 h-4 rounded-full border border-neutral-400 ${
               keyboardTheme === theme.name ? 'bg-neutral-300' : ''
             }`}
             style={{ backgroundColor: theme.mainColor }}
