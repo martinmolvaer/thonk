@@ -4,13 +4,37 @@ import Link from 'next/link';
 import Nav from './components/Nav';
 import Keyboard from './components/Keyboard';
 import { motion } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import InfoDisplay from './components/InfoDisplay';
 import { Switch } from './types/switchtype';
 import { switches } from './switches';
+import { keyboardThemes } from './themes';
 
 export default function Home() {
   const [currentSwitch, setCurrentSwitch] = useState<Switch | null>(null);
+  const [keyboardTheme, setKeyboardTheme] = useState<string>('light');
+
+  // handle keyboard theme change
+  const handleKeyboardThemeChange = (theme: string) => {
+    setKeyboardTheme(theme);
+    console.log('Keyboard theme changed to:', theme);
+    // play click sound
+    const clickAudio = new Audio('/mouse-click-153941.mp3');
+    clickAudio.volume = 0.04;
+    clickAudio.play();
+  };
+
+  // save and load keyboard theme from local storage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('keyboardTheme');
+    if (savedTheme) {
+      setKeyboardTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('keyboardTheme', keyboardTheme);
+  }, [keyboardTheme]);
 
   // preload audio files
   const audioMap = useMemo(() => {
@@ -58,6 +82,10 @@ export default function Home() {
                 keyToPress={`#${switchItem.id}`}
                 brand={switchItem.brand}
                 onClick={() => playSound(switchItem)}
+                theme={
+                  keyboardThemes.find((t) => t.name === keyboardTheme) ||
+                  keyboardThemes[0]
+                }
               />
             </motion.div>
           ))}
@@ -72,6 +100,18 @@ export default function Home() {
       >
         made by mart
       </Link>
+      <div className="absolute top-2 right-2 flex gap-2">
+        {keyboardThemes.map((theme) => (
+          <button
+            key={theme.name}
+            onClick={() => handleKeyboardThemeChange(theme.name)}
+            className={`w-4 h-4 rounded-full border border-neutral-500 ${
+              keyboardTheme === theme.name ? 'bg-neutral-300' : ''
+            }`}
+            style={{ backgroundColor: theme.mainColor }}
+          ></button>
+        ))}
+      </div>
     </main>
   );
 }

@@ -8,22 +8,37 @@ interface ButtonProps {
   keyToPress?: string;
   onClick: () => void;
   info?: string;
+  theme?: {
+    name: string;
+    mainColor: string;
+    shadowColor: string;
+    textColor: string;
+    borderColor: string;
+  };
 }
 
-function Button({ name, onClick, color, id, brand }: ButtonProps) {
+function Button({ name, onClick, color, id, brand, theme }: ButtonProps) {
   return (
     <div
       id={String(id)}
       onClick={onClick}
-      className="group font-mono select-none  relative flex flex-col size-19 sm:size-22 items-center justify-center overflow-hidden rounded-md border border-neutral-300 bg-[#F4F7FE] px-4 p-2 text-xs font-semibold text-neutral-600 transition-all [box-shadow:0px_8px_1px_#D9D9E6] active:translate-y-[4px] active:shadow-none"
+      style={{
+        backgroundColor: theme?.mainColor || '#F4F7FE',
+        color: theme?.textColor || '#4B5563',
+        borderColor: theme?.borderColor || '#D1D5DB',
+        boxShadow: `0px 8px 1px ${theme?.shadowColor || '#D9D9E6'}`,
+      }}
+      className="group font-mono select-none relative flex flex-col size-19 sm:size-22 items-center justify-center overflow-hidden rounded-md border px-4 p-2 text-xs font-semibold transition-all active:translate-y-[4px] active:shadow-none"
     >
       <div
-        className="absolute left-1 top-1 rounded-full size-3 mb-2 border border-neutral-300 transition-all group-hover:scale-110 group-active:scale-120"
-        style={{ backgroundColor: color }}
+        className="absolute left-1 top-1 rounded-full size-3 mb-2 border transition-all group-hover:scale-110 group-active:scale-120"
+        style={{
+          backgroundColor: color,
+          borderColor: theme?.borderColor || '#D1D5DB',
+        }}
       ></div>
-      {/* <p className="text-neutral-400  absolute right-2 top-2 ">{keyToPress}</p> */}
-      <p className=" mt-1 text-[8px] text-center">{brand}</p>
-      <p className="text-center text-xs ">{name}</p>
+      <p className="mt-1 text-[8px] text-center">{brand}</p>
+      <p className="text-center text-xs">{name}</p>
     </div>
   );
 }

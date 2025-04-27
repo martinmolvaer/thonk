@@ -17,7 +17,7 @@ function InfoDisplay({ currentSwitch }: { currentSwitch: SwitchType | null }) {
             className="text-center text-sm font-mono semibold"
           >
             <div className="flex justify-center items-center">
-              <div className="flex gap-1 items-center mb-1">
+              <div className="flex gap-1 items-center mb-1 text-black">
                 <p className="font-mono text-md">
                   {currentSwitch.brand ? currentSwitch.brand : ''}
                 </p>
